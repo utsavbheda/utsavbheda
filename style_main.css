@@ -24,7 +24,8 @@ body {
     width: 100vw;
     height: 100vh;
     padding: 2rem;
-    overflow: auto; /* Enable scrolling for the content if it's too long */
+    padding-bottom: 5rem; /* Add padding at the bottom to prevent the input bar from hiding content */
+    overflow-y: auto; /* Enable scrolling for the content if it's too long */
 }
 
 /* =============================
@@ -55,8 +56,9 @@ body {
 /* =============================
    Main Terminal Sections
 ============================= */
+/* Removed min-height: 100vh from section so content dictates height, 
+   improving scrolling experience on shorter sections */
 section {
-    min-height: 100vh;
     padding: 2rem;
 }
 
@@ -91,6 +93,7 @@ pre {
     font-size: 1.2rem;
 }
 
+/* Case file links are now better separated */
 #experience .case-file-list a {
     color: #00ff00;
     display: block;
@@ -127,16 +130,58 @@ pre {
     text-shadow: 0 0 5px #fff;
 }
 
+/* ====================================
+   New styles for case file sections
+======================================= */
+.case-details {
+    display: block;
+    margin-top: 0rem;
+    font-size: 0.9rem;
+    /* Added subtle border for visual grouping */
+    border: 1px solid #005500;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.case-details .detail-title {
+    font-weight: bold;
+    color: #00ff00;
+    display: block;
+}
+
+.log-entry-list .log-entry {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
 /* =============================
-   Terminal Input Styling
+   Terminal Input & Output Log Styling
 ============================= */
+/* The fixed input bar now sits above all content */
 .terminal-input {
     display: flex;
     align-items: center;
     position: fixed;
-    bottom: 2rem;
+    bottom: 0; /* Align to the very bottom */
+    left: 0;
+    right: 0;
+    padding: 1rem 2rem; /* Add padding to match section spacing */
+    background-color: #000; /* Ensure it covers content when scrolling */
+    border-top: 1px solid #005500; /* Subtle separator line */
+    z-index: 1000; /* Keep it above other content */
+}
+
+/* New element for command output messages */
+#terminal-output-log {
+    position: fixed;
+    bottom: 3.5rem; /* Position just above the input bar */
     left: 2rem;
     right: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    color: #ff0000; /* Red color for error messages (default) */
+    z-index: 999;
+    pointer-events: none; /* Allows clicks to pass through to the main content */
 }
 
 .terminal-input .prompt {
@@ -156,61 +201,8 @@ pre {
     flex-grow: 1;
     margin-left: 0.5rem;
     padding: 0;
-}
-
-/* ====================================
-   New styles for case file sections
-======================================= */
-.case-details {
-    display: block;
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-}
-
-.case-details .detail-title {
-    font-weight: bold;
-    color: #00ff00;
-    display: block;
-}
-
-.log-entry-list .log-entry {
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-/* =============================
-   Section-Specific Styles
-============================= */
-#home .user-intro {
-    display: block;
-    margin-top: 1rem;
-    font-size: 1.2rem;
-}
-
-#experience .case-file-list a {
-    color: #00ff00;
-    display: block;
-    margin: 0.5rem 0;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-#experience .case-file-list a:hover {
-    color: #fff;
-    text-shadow: 0 0 5px #fff;
-}
-
-#skills .category-title {
-    font-weight: bold;
-    color: #00ff00;
-    text-decoration: underline;
-    margin-top: 1rem;
-    display: block;
-}
-
-#skills .skill-list {
-    display: block;
-    margin-left: 2rem;
+    /* Added animation for the cursor blink effect */
+    animation: blink 1s step-end infinite;
 }
 
 /* Added styles for the new sections */
@@ -218,14 +210,4 @@ pre {
 #education .education-item {
     display: block;
     margin-left: 1rem;
-}
-
-#contact a {
-    color: #00ff00;
-    transition: color 0.3s;
-}
-
-#contact a:hover {
-    color: #fff;
-    text-shadow: 0 0 5px #fff;
 }
