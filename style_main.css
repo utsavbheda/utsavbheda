@@ -155,6 +155,28 @@ pre {
 }
 
 /* =============================
+   New Navigation Link Style
+============================= */
+
+.navigation-link {
+    display: block;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+}
+
+.go-back-link {
+    color: #00ff00;
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.go-back-link:hover {
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+    text-decoration: underline;
+}
+
+/* =============================
    Terminal Input & Output Log Styling
 ============================= */
 /* The fixed input bar now sits above all content */
