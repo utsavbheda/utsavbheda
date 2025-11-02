@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const bootSequence = document.getElementById('boot-sequence');
     const terminalOutput = document.querySelector('.terminal-output');
     const mainContent = document.getElementById('main-content');
+    const commandInput = document.getElementById('command-input'); // Get the command input element
 
     const bootText = [
         "Initializing secure connection...",
@@ -34,6 +35,12 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(() => {
                 bootSequence.style.display = 'none';
                 mainContent.style.display = 'block';
+                
+                // NEW: Automatically focus on the command input for immediate use
+                if (commandInput) {
+                    commandInput.focus();
+                }
+
             }, 1500); // Wait 1.5 seconds before hiding the screen
         }
     }
